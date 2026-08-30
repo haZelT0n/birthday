@@ -539,7 +539,7 @@ memoryCards.forEach(
 
 const galleryPhotos = [
 
-    "photos/walk1.jpg",
+    "photo1.jpeg",
 
     "photos/walk2.jpg",
 
