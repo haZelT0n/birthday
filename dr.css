@@ -1,0 +1,1794 @@
+/* =====================================================
+   ОСНОВА
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    font-family: Arial, sans-serif;
+
+    background: #0b0e22;
+}
+
+
+/* =====================================================
+   ОБЩИЕ ЭКРАНЫ
+===================================================== */
+
+.screen {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 1s ease;
+}
+
+.screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   ЭКРАН 1
+===================================================== */
+
+.screen-one {
+    background:
+        linear-gradient(
+            135deg,
+            #0b0e22,
+            #27103a
+        );
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+
+/* =====================================================
+   ЗВЁЗДЫ
+===================================================== */
+
+.stars {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+
+    background: white;
+
+    border-radius: 50%;
+
+    animation:
+        twinkle
+        infinite
+        ease-in-out;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.2;
+
+        transform:
+            scale(1);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            scale(1.4);
+    }
+}
+
+
+/* =====================================================
+   ПРИВЕТСТВИЕ
+===================================================== */
+
+.welcome {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 90%;
+    max-width: 800px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    z-index: 10;
+}
+
+.welcome h1 {
+    margin: 0;
+
+    color: white;
+
+    font-size:
+        clamp(32px, 6vw, 56px);
+
+    font-weight: 400;
+
+    line-height: 1.2;
+
+    text-shadow:
+        0 0 25px
+        rgba(255, 255, 255, 0.25);
+
+    animation:
+        textAppear
+        2s ease
+        forwards;
+}
+
+.welcome p {
+    margin-top: 25px;
+
+    color:
+        rgba(255, 255, 255, 0.65);
+
+    font-size: 18px;
+
+    letter-spacing: 1px;
+
+    opacity: 0;
+
+    animation:
+        textAppear
+        2s ease
+        0.5s
+        forwards;
+}
+
+
+/* =====================================================
+   КНОПКА 1
+===================================================== */
+
+#startButton {
+    margin-top: 35px;
+
+    padding:
+        14px 30px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.25);
+
+    border-radius: 50px;
+
+    color: white;
+
+    font-size: 16px;
+
+    letter-spacing: 1px;
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    animation:
+        textAppear
+        2s ease
+        1s
+        forwards;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+#startButton:hover {
+    transform:
+        translateY(-3px);
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    box-shadow:
+        0 0 20px
+        rgba(255, 255, 255, 0.15);
+}
+
+#startButton span {
+    display: inline-block;
+
+    margin-left: 8px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+#startButton:hover span {
+    transform:
+        translateX(5px);
+}
+
+@keyframes textAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+   ЭКРАН 2
+===================================================== */
+
+.screen-two {
+    background:
+        radial-gradient(
+            circle at center,
+            #35205a 0%,
+            #27103a 40%,
+            #0b0e22 100%
+        );
+}
+
+
+/* =====================================================
+   КОНТЕНТ ЭКРАНА 2
+===================================================== */
+
+.birthday-content {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 90%;
+    max-width: 800px;
+
+    text-align: center;
+
+    color: white;
+
+    z-index: 10;
+}
+
+
+/* =====================================================
+   ЗАГОЛОВКИ
+===================================================== */
+
+.birthday-content h1,
+.birthday-content h2,
+.birthday-content p {
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+}
+
+.birthday-content h1 {
+    margin: 0;
+
+    font-size:
+        clamp(28px, 5vw, 48px);
+
+    font-weight: 300;
+
+    letter-spacing: 4px;
+}
+
+.birthday-content h2 {
+    margin:
+        10px 0 25px;
+
+    font-size:
+        clamp(50px, 10vw, 90px);
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 15px
+        rgba(255, 255, 255, 0.3),
+
+        0 0 40px
+        rgba(180, 160, 255, 0.3);
+}
+
+.birthday-content p {
+    color:
+        rgba(255, 255, 255, 0.65);
+
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   ПОЯВЛЕНИЕ КОНТЕНТА
+===================================================== */
+
+.birthday-content.show h1 {
+    animation:
+        revealText
+        1.2s ease
+        0.3s
+        forwards;
+}
+
+.birthday-content.show h2 {
+    animation:
+        revealName
+        1.4s ease
+        0.8s
+        forwards;
+}
+
+.birthday-content.show p {
+    animation:
+        revealText
+        1s ease
+        1.5s
+        forwards;
+}
+
+@keyframes revealText {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+@keyframes revealName {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            scale(0.85);
+
+        text-shadow:
+            0 0 0 transparent;
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            scale(1.05);
+
+        text-shadow:
+            0 0 20px
+            rgba(255, 255, 255, 0.4),
+
+            0 0 50px
+            rgba(180, 150, 255, 0.5);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+        text-shadow:
+            0 0 15px
+            rgba(255, 255, 255, 0.25),
+
+            0 0 35px
+            rgba(180, 150, 255, 0.3);
+    }
+}
+
+
+/* =====================================================
+   ВСПЫШКА
+===================================================== */
+
+.birth-glow {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 20px;
+    height: 20px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.9);
+
+    box-shadow:
+        0 0 20px
+        rgba(255, 255, 255, 0.8),
+
+        0 0 60px
+        rgba(190, 170, 255, 0.7),
+
+        0 0 120px
+        rgba(150, 120, 255, 0.5);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    z-index: 5;
+}
+
+.birth-glow.active {
+    animation:
+        birthGlow
+        1.6s
+        ease-out
+        forwards;
+}
+
+@keyframes birthGlow {
+
+    0% {
+        width: 20px;
+        height: 20px;
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    60% {
+        width: 250px;
+        height: 250px;
+
+        opacity: 0.8;
+    }
+
+    100% {
+        width: 1800px;
+        height: 1800px;
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   ТОРТ
+===================================================== */
+
+.cake {
+    position: relative;
+
+    width: 260px;
+    height: 150px;
+
+    margin:
+        35px auto 10px;
+
+    opacity: 0;
+
+    transform:
+        translateY(20px)
+        scale(0.9);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.cake.show {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =====================================================
+   СВЕЧИ
+===================================================== */
+
+.candles {
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 85px;
+
+    transform:
+        translateX(-50%);
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+
+    gap: 25px;
+
+    z-index: 3;
+}
+
+.candle {
+    position: relative;
+
+    width: 12px;
+    height: 45px;
+
+    border-radius: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ddd,
+            #fff,
+            #ccc
+        );
+
+    box-shadow:
+        inset 2px 0
+        rgba(255, 255, 255, 0.5);
+}
+
+
+/* =====================================================
+   ПЛАМЯ
+===================================================== */
+
+.flame {
+    position: absolute;
+
+    left: 50%;
+    top: -22px;
+
+    width: 12px;
+    height: 18px;
+
+    transform:
+        translateX(-50%)
+        rotate(-45deg)
+        scale(0);
+
+    opacity: 0;
+
+    border-radius:
+        50% 50% 50% 0;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 8px #fff,
+        0 0 18px #ffd27d,
+        0 0 30px #ff9d3c;
+}
+
+.candle.lit .flame {
+
+    animation:
+        flameAppear
+        0.5s
+        ease
+        forwards,
+
+        flameFlicker
+        1.2s
+        ease-in-out
+        0.5s
+        infinite;
+}
+
+@keyframes flameAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            rotate(-45deg)
+            scale(0);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            rotate(-45deg)
+            scale(1);
+    }
+}
+
+@keyframes flameFlicker {
+
+    0%,
+    100% {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            rotate(-45deg)
+            scale(1);
+    }
+
+    50% {
+        opacity: 0.85;
+
+        transform:
+            translateX(-50%)
+            rotate(-40deg)
+            scale(1.08);
+    }
+}
+
+
+/* =====================================================
+   ВЕРХ ТОРТА
+===================================================== */
+
+.cake-top {
+    position: absolute;
+
+    bottom: 57px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 230px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    background:
+        #f2d7ff;
+
+    z-index: 2;
+
+    box-shadow:
+        0 5px 15px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+/* =====================================================
+   КРЕМ
+===================================================== */
+
+.cream {
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    transform:
+        translateX(-50%);
+
+    width: 210px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.65);
+
+    filter:
+        blur(1px);
+}
+
+
+/* =====================================================
+   КОРПУС ТОРТА
+===================================================== */
+
+.cake-body {
+    position: absolute;
+
+    bottom: 0;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 210px;
+    height: 75px;
+
+    border-radius:
+        0 0 20px 20px;
+
+    background:
+        #d9b8ec;
+
+    z-index: 1;
+
+    box-shadow:
+        0 15px 25px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+/* =====================================================
+   КНОПКА ЭКРАНА 2
+===================================================== */
+
+#secondNextButton {
+    margin-top: 30px;
+
+    padding:
+        14px 28px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.25);
+
+    border-radius: 50px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    font-size: 16px;
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+#secondNextButton.show {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+    pointer-events: auto;
+}
+
+#secondNextButton:hover {
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 0 25px
+        rgba(255, 255, 255, 0.15);
+}
+
+
+/* =====================================================
+   ЭКРАН 3
+===================================================== */
+
+.screen-three {
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #2d194d 0%,
+            #1c1233 45%,
+            #0b0e22 100%
+        );
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =====================================================
+   КОНТЕЙНЕР ПОЗДРАВЛЕНИЯ
+===================================================== */
+
+.message-content {
+    position: relative;
+
+    width:
+        min(850px, 88%);
+
+    max-height: 90vh;
+
+    padding:
+        50px 55px;
+
+    border-radius: 28px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.25);
+
+    text-align: center;
+
+    color: white;
+}
+
+
+/* =====================================================
+   EYEBROW
+===================================================== */
+
+.message-content .eyebrow {
+    margin-bottom: 15px;
+
+    color:
+        rgba(255, 255, 255, 0.45);
+
+    font-size: 14px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   ЗАГОЛОВОК ЭКРАНА 3
+===================================================== */
+
+.message-content h1 {
+    margin: 0;
+
+    font-size:
+        clamp(30px, 5vw, 48px);
+
+    font-weight: 300;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 25px
+        rgba(255, 255, 255, 0.15);
+}
+
+
+/* =====================================================
+   РАЗДЕЛИТЕЛЬ
+===================================================== */
+
+.message-divider {
+    width: 70px;
+
+    height: 1px;
+
+    margin:
+        25px auto 30px;
+
+    background:
+        rgba(255, 255, 255, 0.3);
+
+    box-shadow:
+        0 0 10px
+        rgba(200, 170, 255, 0.25);
+}
+
+
+/* =====================================================
+   ТЕКСТ ПОЗДРАВЛЕНИЯ
+===================================================== */
+
+.message-text {
+    width: 100%;
+
+    max-height: 52vh;
+
+    overflow-y: auto;
+
+    padding-right: 8px;
+
+    color:
+        rgba(255, 255, 255, 0.78);
+
+    font-size:
+        clamp(16px, 1.6vw, 19px);
+
+    line-height: 1.8;
+
+    text-align: left;
+
+    scrollbar-width: thin;
+}
+
+.message-paragraph {
+    margin:
+        0 0 24px;
+
+    opacity: 0;
+
+    transform:
+        translateY(12px);
+
+    animation:
+        paragraphAppear
+        0.8s
+        ease
+        forwards;
+}
+
+.message-paragraph:last-child {
+    margin-bottom: 0;
+}
+
+@keyframes paragraphAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+   КУРСОР ПЕЧАТИ
+===================================================== */
+
+.typing-cursor {
+    display: inline-block;
+
+    width: 2px;
+
+    height: 1.05em;
+
+    margin-left: 3px;
+
+    vertical-align: -2px;
+
+    background:
+        rgba(255, 255, 255, 0.65);
+
+    animation:
+        cursorBlink
+        0.8s
+        ease-in-out
+        infinite;
+}
+
+@keyframes cursorBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   КНОПКА ЭКРАНА 3
+===================================================== */
+
+.message-next {
+    margin-top: 35px;
+
+    padding:
+        13px 27px;
+
+    border-radius: 50px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.20);
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    color:
+        rgba(255, 255, 255, 0.9);
+
+    font-size: 15px;
+
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    transform:
+        translateY(12px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.message-next.show {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+    pointer-events: auto;
+}
+
+.message-next:hover {
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 0 25px
+        rgba(190, 160, 255, 0.15);
+}
+
+
+/* =====================================================
+   МОБИЛЬНАЯ ВЕРСИЯ
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .welcome h1 {
+        font-size: 32px;
+    }
+
+    .welcome p {
+        font-size: 16px;
+    }
+
+    .birthday-content h1 {
+        font-size: 26px;
+    }
+
+    .birthday-content h2 {
+        font-size: 54px;
+    }
+
+    .birthday-content p {
+        font-size: 16px;
+    }
+
+    .cake {
+        transform:
+            translateY(20px)
+            scale(0.8);
+    }
+
+    .cake.show {
+        transform:
+            translateY(0)
+            scale(0.8);
+    }
+
+    .message-content {
+        width: 92%;
+
+        padding:
+            35px 25px;
+    }
+
+    .message-text {
+        max-height: 50vh;
+
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+}
+
+
+/* =====================================================
+   ЭКРАН 4
+===================================================== */
+
+.screen-four {
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            #302052 0%,
+            #1c1233 45%,
+            #0b0e22 100%
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+        opacity 1s ease;
+}
+
+/* =====================================================
+   КОНТЕНТ
+===================================================== */
+
+.cards-content {
+
+    width: min(900px, 90%);
+
+    text-align: center;
+
+    color: white;
+}
+
+/* =====================================================
+   МАЛЕНЬКАЯ НАДПИСЬ
+===================================================== */
+
+.cards-eyebrow {
+
+    margin-bottom: 12px;
+
+    color:
+        rgba(255, 255, 255, 0.4);
+
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+}
+
+/* =====================================================
+   ЗАГОЛОВОК
+===================================================== */
+
+.cards-content h1 {
+
+    margin: 0;
+
+    font-size:
+        clamp(28px, 5vw, 44px);
+
+    font-weight: 300;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 25px rgba(255,255,255,0.15);
+}
+
+/* =====================================================
+   ПОДЗАГОЛОВОК
+===================================================== */
+
+.cards-subtitle {
+
+    margin:
+        12px 0 30px;
+
+    color:
+        rgba(255,255,255,0.45);
+
+    font-size: 15px;
+}
+
+/* =====================================================
+   СЕТКА
+===================================================== */
+
+.memory-cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+
+    perspective: 1000px;
+}
+
+/* =====================================================
+   КАРТОЧКА
+===================================================== */
+
+.memory-card {
+
+    height: 190px;
+
+    cursor: pointer;
+
+    perspective: 1000px;
+}
+
+/* =====================================================
+   ВНУТРЕННЯЯ ЧАСТЬ
+===================================================== */
+
+.memory-card-inner {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform 0.7s ease;
+}
+
+/* =====================================================
+   ПЕРЕВОРОТ
+===================================================== */
+
+.memory-card.flipped
+.memory-card-inner {
+
+    transform:
+        rotateY(180deg);
+}
+
+/* =====================================================
+   ОБЕ СТОРОНЫ
+===================================================== */
+
+.memory-card-front,
+.memory-card-back {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 22px;
+
+    box-sizing: border-box;
+
+    border-radius: 22px;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    background:
+        rgba(255,255,255,0.045);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.20);
+
+}
+
+/* =====================================================
+   ПЕРЕД
+===================================================== */
+
+.memory-card-front {
+
+    text-align: center;
+}
+
+.card-icon {
+
+    margin-bottom: 12px;
+
+    font-size: 30px;
+
+    opacity: 0.75;
+}
+
+.memory-card-front h2 {
+
+    margin: 0;
+
+    max-width: 250px;
+
+    font-size: 19px;
+
+    font-weight: 400;
+
+    line-height: 1.3;
+}
+
+.memory-card-front span {
+
+    margin-top: 14px;
+
+    color:
+        rgba(255,255,255,0.35);
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+}
+
+/* =====================================================
+   ЗАДНЯЯ СТОРОНА
+===================================================== */
+
+.memory-card-back {
+
+    transform:
+        rotateY(180deg);
+
+    text-align: center;
+}
+
+.memory-card-back h2 {
+
+    margin:
+        0 0 12px;
+
+    font-size: 20px;
+
+    font-weight: 400;
+}
+
+.memory-card-back p {
+
+    margin: 0;
+
+    max-width: 300px;
+
+    color:
+        rgba(255,255,255,0.68);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+/* =====================================================
+   КНОПКА ГАЛЕРЕИ
+===================================================== */
+
+.open-gallery {
+
+    margin-top: 15px;
+
+    padding:
+        9px 18px;
+
+    border-radius: 30px;
+
+    border:
+        1px solid rgba(255,255,255,0.18);
+
+    background:
+        rgba(255,255,255,0.07);
+
+    color: white;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+/* =====================================================
+   МОБИЛЬНЫЙ ЭКРАН
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .cards-content {
+
+        width: 92%;
+    }
+
+    .cards-content h1 {
+
+        font-size: 29px;
+    }
+
+    .cards-subtitle {
+
+        margin-bottom: 22px;
+    }
+
+    .memory-cards {
+
+        gap: 12px;
+    }
+
+    .memory-card {
+
+        height: 210px;
+    }
+
+    .memory-card-front,
+    .memory-card-back {
+
+        padding: 15px;
+
+        border-radius: 18px;
+    }
+
+    .card-icon {
+
+        font-size: 25px;
+
+        margin-bottom: 8px;
+    }
+
+    .memory-card-front h2 {
+
+        font-size: 15px;
+    }
+
+    .memory-card-back h2 {
+
+        font-size: 17px;
+    }
+
+    .memory-card-back p {
+
+        font-size: 12px;
+
+        line-height: 1.45;
+    }
+
+}
+
+/* =====================================================
+   ОЧЕНЬ УЗКИЕ ЭКРАНЫ
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .memory-card {
+
+        height: 150px;
+    }
+
+    .memory-card-front h2 {
+
+        font-size: 14px;
+    }
+
+    .memory-card-front span {
+
+        font-size: 10px;
+    }
+
+}
+
+
+/* =====================================================
+   МОДАЛЬНАЯ ГАЛЕРЕЯ
+===================================================== */
+
+.gallery-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background:
+        rgba(5, 5, 15, 0.92);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.4s ease;
+}
+
+.gallery-modal.active {
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+/* =====================================================
+   ФОТО
+===================================================== */
+
+.gallery-view {
+
+    position: relative;
+
+    width: 88%;
+    height: 82%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#galleryImage {
+
+    max-width: 100%;
+    max-height: 100%;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,0.5);
+
+    opacity: 0;
+
+    transform:
+        scale(0.96);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+#galleryImage.loaded {
+
+    opacity: 1;
+
+    transform:
+        scale(1);
+}
+
+/* =====================================================
+   ЗАКРЫТЬ
+===================================================== */
+
+.gallery-close {
+
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    z-index: 5;
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(255,255,255,0.2);
+
+    background:
+        rgba(255,255,255,0.08);
+
+    color: white;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+/* =====================================================
+   СТРЕЛКИ
+===================================================== */
+
+.gallery-arrow {
+
+    position: absolute;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    z-index: 5;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(255,255,255,0.18);
+
+    background:
+        rgba(255,255,255,0.08);
+
+    color: white;
+
+    font-size: 38px;
+
+    line-height: 40px;
+
+    cursor: pointer;
+}
+
+.gallery-prev {
+    left: 20px;
+}
+
+.gallery-next {
+    right: 20px;
+}
+
+/* =====================================================
+   СЧЁТЧИК
+===================================================== */
+
+.gallery-counter {
+
+    position: absolute;
+
+    bottom: -35px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color:
+        rgba(255,255,255,0.5);
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+/* =====================================================
+   МОБИЛЬНАЯ ВЕРСИЯ
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .gallery-view {
+
+        width: 92%;
+        height: 78%;
+    }
+
+    .gallery-close {
+
+        top: 15px;
+        right: 15px;
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 28px;
+    }
+
+    .gallery-arrow {
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 32px;
+    }
+
+    .gallery-prev {
+        left: 8px;
+    }
+
+    .gallery-next {
+        right: 8px;
+    }
+
+}
