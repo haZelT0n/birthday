@@ -1,35 +1,41 @@
 /* =====================================================
-   ЗВЁЗДЫ
+   ЗВЁЗДЫ — ЭКРАН 1
 ===================================================== */
 
-const starsContainer = document.querySelector(".stars");
+const starsContainer =
+    document.querySelector(".stars");
 
-if (starsContainer) {
+for (let i = 0; i < 120; i++) {
 
-    for (let i = 0; i < 120; i++) {
+    const star =
+        document.createElement("div");
 
-        const star = document.createElement("div");
+    star.classList.add("star");
 
-        star.classList.add("star");
+    const size =
+        Math.random() * 3 + 1;
 
-        const size = Math.random() * 3 + 1;
+    star.style.width =
+        `${size}px`;
 
-        star.style.width = `${size}px`;
-        star.style.height = `${size}px`;
+    star.style.height =
+        `${size}px`;
 
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.top = `${Math.random() * 100}%`;
+    star.style.left =
+        `${Math.random() * 100}%`;
 
-        star.style.animationDuration =
-            `${2 + Math.random() * 4}s`;
+    star.style.top =
+        `${Math.random() * 100}%`;
 
-        star.style.animationDelay =
-            `${Math.random() * 4}s`;
+    star.style.animationDuration =
+        `${2 + Math.random() * 4}s`;
 
-        starsContainer.appendChild(star);
-    }
+    star.style.animationDelay =
+        `${Math.random() * 4}s`;
 
+    starsContainer.appendChild(star);
 }
+
 
 
 /* =====================================================
@@ -49,17 +55,13 @@ const fourthScreen =
     document.querySelector(".screen-four");
 
 
+
 /* =====================================================
-   ЭКРАН 1
+   ЭКРАН 1 → ЭКРАН 2
 ===================================================== */
 
 const startButton =
     document.getElementById("startButton");
-
-
-/* =====================================================
-   ЭКРАН 2
-===================================================== */
 
 const glow =
     document.querySelector(".birth-glow");
@@ -77,35 +79,28 @@ const secondNextButton =
     document.getElementById("secondNextButton");
 
 
-/* =====================================================
-   ЭКРАН 3
-===================================================== */
-
-const birthdayMessage =
-    document.getElementById("birthdayMessage");
-
-const thirdNextButton =
-    document.getElementById("thirdNextButton");
-
-
-/* =====================================================
-   ЭКРАН 1 → ЭКРАН 2
-===================================================== */
-
 startButton.addEventListener("click", () => {
 
-    /* Первый экран исчезает */
+    /*
+        Убираем первый экран
+    */
 
     firstScreen.classList.add("hidden");
 
 
-    /* Второй экран появляется */
+    /*
+        Показываем второй
+    */
 
     secondScreen.style.opacity = "1";
-    secondScreen.style.pointerEvents = "auto";
+
+    secondScreen.style.pointerEvents =
+        "auto";
 
 
-    /* Перезапускаем вспышку */
+    /*
+        Перезапускаем вспышку
+    */
 
     glow.classList.remove("active");
 
@@ -114,7 +109,9 @@ startButton.addEventListener("click", () => {
     glow.classList.add("active");
 
 
-    /* Появление текста */
+    /*
+        Появление текста
+    */
 
     setTimeout(() => {
 
@@ -123,7 +120,9 @@ startButton.addEventListener("click", () => {
     }, 900);
 
 
-    /* Появление торта */
+    /*
+        Появление торта
+    */
 
     setTimeout(() => {
 
@@ -132,64 +131,102 @@ startButton.addEventListener("click", () => {
     }, 2800);
 
 
-    /* =================================================
-       ЗАЖИГАНИЕ СВЕЧЕЙ
-    ================================================= */
+    /*
+        Зажигание свечей
+    */
 
-    candles.forEach((candle, index) => {
+    candles.forEach(
+        (candle, index) => {
 
-        setTimeout(() => {
+            setTimeout(() => {
 
-            candle.classList.add("lit");
+                candle.classList.add("lit");
 
 
-            /* Последняя свеча */
+                /*
+                    После последней свечи
+                    показываем кнопку
+                */
 
-            if (index === candles.length - 1) {
+                if (
+                    index ===
+                    candles.length - 1
+                ) {
 
-                setTimeout(() => {
+                    setTimeout(() => {
 
-                    secondNextButton.classList.add("show");
+                        secondNextButton
+                            .classList
+                            .add("show");
 
-                }, 1200);
+                    }, 1200);
 
-            }
+                }
 
-        }, 3500 + index * 500);
+            }, 3500 + index * 500);
 
-    });
+        }
+    );
 
 });
+
 
 
 /* =====================================================
    ЭКРАН 2 → ЭКРАН 3
 ===================================================== */
 
-secondNextButton.addEventListener("click", () => {
+secondNextButton.addEventListener(
+    "click",
+    () => {
 
-    /* Второй экран исчезает */
+        secondScreen.style.opacity =
+            "0";
 
-    secondScreen.style.opacity = "0";
-    secondScreen.style.pointerEvents = "none";
-
-
-    /* Третий экран появляется */
-
-    thirdScreen.style.opacity = "1";
-    thirdScreen.style.pointerEvents = "auto";
+        secondScreen.style.pointerEvents =
+            "none";
 
 
-    /* Запускаем поздравление */
+        thirdScreen.style.opacity =
+            "1";
 
-    startBirthdayMessage();
+        thirdScreen.style.pointerEvents =
+            "auto";
 
-});
+
+        /*
+            Запускаем поздравление
+        */
+
+        startBirthdayMessage();
+
+    }
+);
+
 
 
 /* =====================================================
-   ТЕКСТ ПОЗДРАВЛЕНИЯ
+   ПОЗДРАВЛЕНИЕ — ТЕКСТ
 ===================================================== */
+
+const birthdayMessage =
+    document.getElementById(
+        "birthdayMessage"
+    );
+
+const thirdNextButton =
+    document.getElementById(
+        "thirdNextButton"
+    );
+
+
+
+/*
+    ТЕКСТ ПОЗДРАВЛЕНИЯ
+
+    Если захочешь изменить текст —
+    меняешь только этот массив.
+*/
 
 const messageParagraphs = [
 
@@ -230,54 +267,69 @@ const messageParagraphs = [
 ];
 
 
+
 /* =====================================================
-   ПЕЧАТЬ ОДНОГО АБЗАЦА
+   ПЕЧАТЬ ТЕКСТА
 ===================================================== */
 
-function typeText(element, text, speed = 18) {
+function typeText(
+    element,
+    text,
+    speed = 18
+) {
 
-    return new Promise((resolve) => {
+    return new Promise(
+        (resolve) => {
 
-        let index = 0;
-
-        const cursor =
-            document.createElement("span");
-
-        cursor.classList.add("typing-cursor");
-
-        element.appendChild(cursor);
+            let index = 0;
 
 
-        function type() {
+            /*
+                Курсор
+            */
 
-            if (index < text.length) {
+            const cursor =
+                document.createElement("span");
 
-                cursor.before(
-                    document.createTextNode(
-                        text[index]
-                    )
-                );
+            cursor.classList.add(
+                "typing-cursor"
+            );
 
-                index++;
+            element.appendChild(cursor);
 
-                setTimeout(type, speed);
 
-            } else {
+            function type() {
 
-                cursor.remove();
+                if (index < text.length) {
 
-                resolve();
+                    cursor.before(
+                        document.createTextNode(
+                            text[index]
+                        )
+                    );
 
+                    index++;
+
+                    setTimeout(
+                        type,
+                        speed
+                    );
+
+                } else {
+
+                    cursor.remove();
+
+                    resolve();
+                }
             }
 
+
+            type();
+
         }
-
-
-        type();
-
-    });
-
+    );
 }
+
 
 
 /* =====================================================
@@ -289,8 +341,6 @@ let messageStarted = false;
 
 async function startBirthdayMessage() {
 
-    /* Защита от повторного запуска */
-
     if (messageStarted) {
         return;
     }
@@ -298,16 +348,22 @@ async function startBirthdayMessage() {
     messageStarted = true;
 
 
-    /* Ждём 5 секунд */
+    /*
+        Ждём 5 секунд
+    */
 
-    await new Promise(resolve => {
+    await new Promise(
+        resolve =>
+            setTimeout(
+                resolve,
+                5000
+            )
+    );
 
-        setTimeout(resolve, 5000);
 
-    });
-
-
-    /* Печатаем каждый абзац */
+    /*
+        Печатаем каждый абзац
+    */
 
     for (
         let i = 0;
@@ -328,7 +384,9 @@ async function startBirthdayMessage() {
         );
 
 
-        /* Печатаем текст */
+        /*
+            Печать
+        */
 
         await typeText(
             paragraph,
@@ -337,16 +395,22 @@ async function startBirthdayMessage() {
         );
 
 
-        /* Пауза между абзацами */
+        /*
+            Пауза
+        */
 
-        await new Promise(resolve => {
+        await new Promise(
+            resolve =>
+                setTimeout(
+                    resolve,
+                    900
+                )
+        );
 
-            setTimeout(resolve, 900);
 
-        });
-
-
-        /* Прокручиваем вниз */
+        /*
+            Автопрокрутка
+        */
 
         birthdayMessage.scrollTo({
 
@@ -361,51 +425,390 @@ async function startBirthdayMessage() {
     }
 
 
-    /* После полного текста */
+    /*
+        Показываем кнопку
+    */
 
     setTimeout(() => {
 
-        thirdNextButton.classList.add("show");
+        thirdNextButton
+            .classList
+            .add("show");
 
     }, 1000);
 
 }
 
 
+
 /* =====================================================
    ЭКРАН 3 → ЭКРАН 4
 ===================================================== */
 
-thirdNextButton.addEventListener("click", () => {
+thirdNextButton.addEventListener(
+    "click",
+    () => {
 
-    /* Третий экран исчезает */
+        thirdScreen.style.opacity =
+            "0";
 
-    thirdScreen.style.opacity = "0";
-    thirdScreen.style.pointerEvents = "none";
+        thirdScreen.style.pointerEvents =
+            "none";
 
 
-    /* Четвёртый появляется */
+        fourthScreen.style.opacity =
+            "1";
 
-    fourthScreen.style.opacity = "1";
-    fourthScreen.style.pointerEvents = "auto";
+        fourthScreen.style.pointerEvents =
+            "auto";
 
-});
+    }
+);
+
 
 
 /* =====================================================
-   КАРТОЧКИ
+   КАРТОЧКИ — ПЕРЕВОРОТ
 ===================================================== */
 
 const memoryCards =
-    document.querySelectorAll(".memory-card");
+    document.querySelectorAll(
+        ".memory-card"
+    );
 
 
-memoryCards.forEach(card => {
+memoryCards.forEach(
+    card => {
 
-    card.addEventListener("click", () => {
+        card.addEventListener(
+            "click",
+            (event) => {
 
-        card.classList.toggle("flipped");
+                /*
+                    Если нажали кнопку
+                    галереи — не переворачиваем
+                    карточку обратно.
+                */
 
-    });
+                if (
+                    event.target.closest(
+                        ".open-gallery"
+                    )
+                ) {
 
-});
+                    return;
+                }
+
+
+                card.classList.toggle(
+                    "flipped"
+                );
+
+            }
+        );
+
+    }
+);
+
+
+
+/* =====================================================
+   ГАЛЕРЕЯ
+===================================================== */
+
+/*
+    =====================================================
+    СЮДА ПОТОМ ДОБАВИШЬ СВОИ ФОТОГРАФИИ
+    =====================================================
+
+    В папке проекта создай:
+
+        photos/
+
+    Например:
+
+        photos/
+        ├── walk1.jpg
+        ├── walk2.jpg
+        ├── winter.jpg
+        └── tunnel.jpg
+
+
+    А здесь просто добавляешь их названия.
+*/
+
+const galleryPhotos = [
+
+    "photos/walk1.jpg",
+
+    "photos/walk2.jpg",
+
+    "photos/winter.jpg",
+
+    "photos/tunnel.jpg"
+
+];
+
+
+
+/* =====================================================
+   ЭЛЕМЕНТЫ МОДАЛЬНОГО ОКНА
+===================================================== */
+
+const galleryCard =
+    document.getElementById(
+        "galleryCard"
+    );
+
+const openGalleryButton =
+    document.querySelector(
+        ".open-gallery"
+    );
+
+const galleryModal =
+    document.getElementById(
+        "galleryModal"
+    );
+
+const modalImage =
+    document.getElementById(
+        "modalImage"
+    );
+
+const modalClose =
+    document.getElementById(
+        "modalClose"
+    );
+
+const modalOverlay =
+    document.querySelector(
+        ".modal-overlay"
+    );
+
+const galleryPrev =
+    document.getElementById(
+        "galleryPrev"
+    );
+
+const galleryNext =
+    document.getElementById(
+        "galleryNext"
+    );
+
+const galleryCounter =
+    document.getElementById(
+        "galleryCounter"
+    );
+
+
+
+/* =====================================================
+   ТЕКУЩАЯ ФОТОГРАФИЯ
+===================================================== */
+
+let currentPhoto = 0;
+
+
+
+/* =====================================================
+   ПОКАЗ ФОТОГРАФИИ
+===================================================== */
+
+function showPhoto(index) {
+
+    if (
+        galleryPhotos.length === 0
+    ) {
+
+        return;
+    }
+
+
+    /*
+        Зацикливаем галерею
+
+        После последней →
+        снова первая.
+
+        Перед первой →
+        последняя.
+    */
+
+    if (
+        index >=
+        galleryPhotos.length
+    ) {
+
+        index = 0;
+    }
+
+    if (index < 0) {
+
+        index =
+            galleryPhotos.length - 1;
+    }
+
+
+    currentPhoto = index;
+
+
+    /*
+        Меняем изображение
+    */
+
+    modalImage.src =
+        galleryPhotos[currentPhoto];
+
+
+    /*
+        Счётчик
+    */
+
+    galleryCounter.textContent =
+        `${currentPhoto + 1} / ${galleryPhotos.length}`;
+
+}
+
+
+
+/* =====================================================
+   ОТКРЫТИЕ ГАЛЕРЕИ
+===================================================== */
+
+openGalleryButton.addEventListener(
+    "click",
+    (event) => {
+
+        /*
+            Не даём событию
+            переворачивать карточку
+        */
+
+        event.stopPropagation();
+
+
+        currentPhoto = 0;
+
+        showPhoto(currentPhoto);
+
+
+        galleryModal.classList.add(
+            "active"
+        );
+
+    }
+);
+
+
+
+/* =====================================================
+   ЗАКРЫТИЕ
+===================================================== */
+
+function closeGallery() {
+
+    galleryModal.classList.remove(
+        "active"
+    );
+
+}
+
+
+modalClose.addEventListener(
+    "click",
+    closeGallery
+);
+
+
+modalOverlay.addEventListener(
+    "click",
+    closeGallery
+);
+
+
+
+/* =====================================================
+   СЛЕДУЮЩАЯ ФОТОГРАФИЯ
+===================================================== */
+
+galleryNext.addEventListener(
+    "click",
+    (event) => {
+
+        event.stopPropagation();
+
+        showPhoto(
+            currentPhoto + 1
+        );
+
+    }
+);
+
+
+
+/* =====================================================
+   ПРЕДЫДУЩАЯ ФОТОГРАФИЯ
+===================================================== */
+
+galleryPrev.addEventListener(
+    "click",
+    (event) => {
+
+        event.stopPropagation();
+
+        showPhoto(
+            currentPhoto - 1
+        );
+
+    }
+);
+
+
+
+/* =====================================================
+   КЛАВИАТУРА
+
+   ← / → — листать
+   ESC — закрыть
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            !galleryModal.classList.contains(
+                "active"
+            )
+        ) {
+
+            return;
+        }
+
+
+        if (event.key === "Escape") {
+
+            closeGallery();
+
+        }
+
+
+        if (event.key === "ArrowRight") {
+
+            showPhoto(
+                currentPhoto + 1
+            );
+
+        }
+
+
+        if (event.key === "ArrowLeft") {
+
+            showPhoto(
+                currentPhoto - 1
+            );
+
+        }
+
+    }
+);
